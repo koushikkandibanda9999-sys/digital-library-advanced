@@ -1,18 +1,26 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-
-const authRoutes = require("./routes/authRoutes");
-const libraryRoutes = require("./routes/libraryRoutes");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.use("/auth", authRoutes);
+/* ROUTES */
+const libraryRoutes = require("./backend/routes/libraryRoutes");
 app.use("/library", libraryRoutes);
 
-app.listen(5000, () => {
-  console.log("Server Running on port 5000");
+/* SERVE FRONTEND */
+app.use(express.static(path.join(__dirname, "frontend")));
+
+/* OPEN dashboard.html when site loads */
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "login.html"));
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Server Running on port " + PORT);
 });
