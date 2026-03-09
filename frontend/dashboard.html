@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Digital Library Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>📚 Library Pro</h2>
+
+<button onclick="showSection('dashboard')">Dashboard</button>
+
+<button onclick="showSection('books')">Books</button>
+
+<button onclick="showSection('issue')">Issue Book</button>
+
+<button onclick="showSection('return')">Return Book</button>
+
+<button onclick="showSection('history')">Issue History</button>
+
+<button onclick="showSection('students')">Students</button>
+
+<button onclick="showSection('addbook')">Add Book</button>
+
+<button onclick="downloadReport()">Download Report</button>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+<input id="searchBook" placeholder="Search books..." onkeyup="searchBooks()">
+
+<div class="profile">👤 Admin | Digital Library</div>
+
+</div>
+
+<!-- DASHBOARD SECTION -->
+
+<div id="dashboard" class="section">
+
+<h1>Dashboard Overview 📊</h1>
+
+<div class="stats">
+
+<div class="stat-card">
+<h3>Total Books</h3>
+<p id="totalBooks">0</p>
+</div>
+
+<div class="stat-card">
+<h3>Issued</h3>
+<p id="issuedBooks">0</p>
+</div>
+
+<div class="stat-card">
+<h3>Returned</h3>
+<p id="returnedBooks">0</p>
+</div>
+
+</div>
+
+<canvas id="chart"></canvas>
+
+</div>
+
+<!-- BOOK LIST -->
+
+<div id="books" class="section" style="display:none">
+
+<h2>Library Books 📚</h2>
+
+<div id="bookList" class="book-grid"></div>
+
+</div>
+
+<!-- ISSUE BOOK -->
+
+<div id="issue" class="section" style="display:none">
+
+<h2>Issue Book 📖</h2>
+
+<label>Student</label>
+
+<select id="studentSelect">
+<option>Select Student</option>
+</select>
+
+<br><br>
+
+<label>Book</label>
+
+<select id="bookSelect">
+<option>Select Book</option>
+</select>
+
+<br><br>
+
+<button onclick="issueBook()">Issue Book</button>
+
+</div>
+
+<!-- RETURN BOOK -->
+
+<div id="return" class="section" style="display:none">
+
+<h2>Return Book 🔄</h2>
+
+<label>Select Issued Book</label>
+
+<select id="issueSelect">
+<option>Select Issue</option>
+</select>
+
+<br><br>
+
+<button onclick="returnBook()">Return Book</button>
+
+</div>
+
+<!-- ISSUE HISTORY -->
+
+<div id="history" class="section" style="display:none">
+
+<h2>Issue History 📋</h2>
+
+<table class="history-table">
+
+<thead>
+<tr>
+<th>Book</th>
+<th>Student</th>
+<th>Issue Date</th>
+<th>Return Date</th>
+<th>Fine</th>
+</tr>
+</thead>
+
+<tbody id="historyList"></tbody>
+
+</table>
+
+</div>
+
+<!-- STUDENTS SECTION -->
+
+<div id="students" class="section" style="display:none">
+
+<h2>Students List 👨‍🎓</h2>
+
+<table class="history-table">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody id="studentList"></tbody>
+
+</table>
+
+</div>
+
+<!-- ADD BOOK SECTION -->
+
+<div id="addbook" class="section" style="display:none">
+
+<h2>Add New Book ➕</h2>
+
+<input id="newTitle" placeholder="Book Title">
+
+<br><br>
+
+<input id="newAuthor" placeholder="Author Name">
+
+<br><br>
+
+<button onclick="addBook()">Add Book</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+loadBooks()
+loadStudents()
+loadStudentsTable()
+createChart()
+loadHistory()
+</script>
+
+</body>
+</html>

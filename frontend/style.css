@@ -1,0 +1,346 @@
+/* GLOBAL */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+}
+
+/* ================= LOGIN & REGISTER ================= */
+
+.login-body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(120deg,#667eea,#764ba2);
+}
+
+.login-container{
+display:flex;
+width:900px;
+height:500px;
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+animation:fadeIn 1s ease;
+}
+
+/* LEFT PANEL */
+
+.login-left{
+flex:1;
+background:#1e3c72;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.login-left h1{
+margin:10px 0;
+}
+
+.book-img{
+width:120px;
+margin-bottom:20px;
+}
+
+/* RIGHT PANEL */
+
+.login-right{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:40px;
+}
+
+.login-right input{
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:14px;
+}
+
+.login-right button{
+padding:12px;
+background:#667eea;
+border:none;
+color:white;
+margin-top:10px;
+cursor:pointer;
+border-radius:6px;
+font-size:15px;
+transition:0.3s;
+}
+
+.login-right button:hover{
+background:#4e5ed1;
+transform:scale(1.03);
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+display:flex;
+min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:220px;
+background:#1e3c72;
+color:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+.sidebar h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.sidebar button{
+width:100%;
+margin:10px 0;
+padding:12px;
+border:none;
+background:#667eea;
+color:white;
+cursor:pointer;
+border-radius:6px;
+font-size:15px;
+transition:0.3s;
+}
+
+.sidebar button:hover{
+background:#4e5ed1;
+transform:scale(1.05);
+}
+
+/* MAIN CONTENT */
+
+.main{
+flex:1;
+padding:30px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+display:flex;
+gap:20px;
+margin-bottom:25px;
+}
+
+.stat-card{
+background:white;
+padding:25px;
+flex:1;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+transition:0.3s;
+}
+
+.stat-card h3{
+margin-bottom:10px;
+color:#333;
+}
+
+.stat-card p{
+font-size:28px;
+font-weight:bold;
+color:#667eea;
+}
+
+.stat-card:hover{
+transform:translateY(-5px);
+}
+
+/* ================= BOOK GRID ================= */
+
+.book-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:20px;
+}
+
+.book-card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+transition:0.3s;
+}
+
+.book-card img{
+width:80px;
+margin-bottom:10px;
+}
+
+.book-card h4{
+margin:5px 0;
+}
+
+.book-card p{
+font-size:14px;
+color:#555;
+}
+
+.book-card:hover{
+transform:scale(1.05);
+}
+
+/* ================= FORMS ================= */
+
+.section input{
+display:block;
+margin:10px 0;
+padding:10px;
+width:250px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+.section button{
+padding:10px 15px;
+background:#667eea;
+border:none;
+color:white;
+cursor:pointer;
+border-radius:6px;
+margin-top:10px;
+}
+
+.section button:hover{
+background:#4e5ed1;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+/* TOP BAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.topbar input{
+padding:10px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.profile{
+background:white;
+padding:10px 15px;
+border-radius:20px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* HISTORY TABLE */
+
+.history-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+}
+
+.history-table th,
+.history-table td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+.history-table th{
+background:#667eea;
+color:white;
+}
+canvas{
+width:400px !important;
+height:250px !important;
+margin-top:20px;
+}
+/* ================= NEW DASHBOARD FEATURES ================= */
+
+/* Better Sidebar Look */
+
+.sidebar{
+background:linear-gradient(180deg,#1e3c72,#2a5298);
+}
+
+/* Better Book Images */
+
+.book-card img{
+width:100px;
+height:130px;
+object-fit:cover;
+border-radius:8px;
+}
+
+/* Chart Box */
+
+canvas{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+max-width:500px;
+}
+
+/* Students Table + Add Book Section */
+
+#students,
+#addbook{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+margin-top:20px;
+}
+
+/* Select Boxes */
+
+.section select{
+padding:10px;
+width:270px;
+border:1px solid #ccc;
+border-radius:6px;
+margin-top:8px;
+}
+
+/* Add Book Inputs */
+
+#addbook input{
+width:300px;
+}
+
+/* Smooth Section Animation */
+
+.section{
+animation:fadeIn 0.5s ease;
+}
