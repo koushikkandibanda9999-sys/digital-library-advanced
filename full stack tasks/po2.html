@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koushik Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f2027;
+    color:white;
+}
+
+/* LOGIN PAGE */
+#loginPage{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.login-box{
+    background:rgba(255,255,255,0.1);
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.login-box input{
+    display:block;
+    margin:15px auto;
+    padding:10px;
+    width:250px;
+    border:none;
+    border-radius:8px;
+}
+
+.login-box button{
+    padding:10px 30px;
+    border:none;
+    border-radius:20px;
+    background:#00f2fe;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* WELCOME VIDEO SCREEN */
+#welcomeScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    z-index:999;
+}
+
+#welcomeScreen video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* PORTFOLIO */
+#portfolio{
+    display:none;
+    padding:100px;
+    text-align:center;
+}
+
+h1{
+    font-size:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+    <div class="login-box">
+        <h2>Login to View Portfolio</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<!-- WELCOME VIDEO -->
+<div id="welcomeScreen">
+    <video id="welcomeVideo" autoplay muted>
+        <!-- You can replace with your own video -->
+        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio">
+    <h1>Welcome to My Portfolio 🚀</h1>
+    <p>I am Koushik Kandibanda - Full Stack Developer</p>
+</div>
+
+<script>
+function login(){
+    let user=document.getElementById("username").value;
+    let pass=document.getElementById("password").value;
+
+    if(user==="koushik" && pass==="1234"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("welcomeScreen").style.display="flex";
+
+        setTimeout(function(){
+            document.getElementById("welcomeScreen").style.display="none";
+            document.getElementById("portfolio").style.display="block";
+        },5000); // 5 seconds video
+    }else{
+        alert("Invalid Login!");
+    }
+}
+</script>
+
+</body>
+</html>

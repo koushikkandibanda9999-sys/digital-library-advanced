@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digital Library Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+overflow-x:hidden;
+}
+
+/* LOGIN PAGE */
+.login-container{
+display:flex;
+height:100vh;
+animation:fadeIn 1s ease-in;
+}
+
+.left-side{
+flex:1;
+background:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') no-repeat center;
+background-size:cover;
+}
+
+.right-side{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+}
+
+.login-box{
+background:rgba(255,255,255,0.1);
+padding:40px;
+border-radius:20px;
+width:350px;
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+animation:slideUp 1s ease;
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:none;
+}
+
+button{
+width:100%;
+padding:10px;
+border:none;
+border-radius:8px;
+background:#00c6ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#0072ff;
+transform:scale(1.05);
+}
+
+/* DASHBOARD */
+.dashboard{
+display:none;
+padding:20px;
+animation:fadeIn 1s ease;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.logout{
+background:#ff4b2b;
+width:120px;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+backdrop-filter:blur(10px);
+animation:fadeIn 0.8s ease;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+padding:10px;
+text-align:center;
+background:rgba(255,255,255,0.15);
+}
+
+.status-available{color:#00ff88;font-weight:bold;}
+.status-issued{color:#ff5555;font-weight:bold;}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes slideUp{
+from{transform:translateY(40px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-container" id="loginPage">
+<div class="left-side"></div>
+<div class="right-side">
+<div class="login-box">
+<h2>📚 Library Login</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<div class="header">
+<h1>Digital Library Pro</h1>
+<button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="card">
+<h3>Issue Book</h3>
+<select id="studentSelect"></select>
+<select id="bookSelect"></select>
+<input type="date" id="issueDate">
+<input type="date" id="returnDate">
+<button onclick="issueBook()">Issue Book</button>
+</div>
+
+<div class="card">
+<h3>Library Records</h3>
+<table id="bookTable">
+<tr>
+<th>Book</th>
+<th>Status</th>
+<th>Student</th>
+<th>Due Date</th>
+<th>Action</th>
+</tr>
+</table>
+</div>
+
+</div>
+
+<script>
+
+/* LOGIN */
+function login(){
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
+
+if(user==="admin" && pass==="1234"){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("dashboard").style.display="block";
+}else{
+alert("Invalid Credentials");
+}
+}
+
+function logout(){
+location.reload();
+}
+
+/* DATA */
+
+let students=[
+{id:1,name:"Koushik"},
+{id:2,name:"Rahul"},
+{id:3,name:"Sneha"},
+{id:4,name:"Arjun"}
+];
+
+let books=[];
+for(let i=1;i<=50;i++){
+books.push({id:i,name:"Book "+i,available:true,student:null,due:null});
+}
+
+/* LOAD */
+window.onload=function(){
+let studentSelect=document.getElementById("studentSelect");
+students.forEach(s=>{
+let opt=document.createElement("option");
+opt.value=s.id;
+opt.text=s.name;
+studentSelect.appendChild(opt);
+});
+updateDropdown();
+renderTable();
+}
+
+function updateDropdown(){
+let bookSelect=document.getElementById("bookSelect");
+bookSelect.innerHTML="";
+books.forEach(b=>{
+if(b.available){
+let opt=document.createElement("option");
+opt.value=b.id;
+opt.text=b.name;
+bookSelect.appendChild(opt);
+}
+});
+}
+
+function renderTable(){
+let table=document.getElementById("bookTable");
+table.innerHTML=`
+<tr>
+<th>Book</th>
+<th>Status</th>
+<th>Student</th>
+<th>Due Date</th>
+<th>Action</th>
+</tr>
+`;
+
+books.forEach(b=>{
+let row=table.insertRow();
+row.insertCell(0).innerHTML=b.name;
+row.insertCell(1).innerHTML=b.available?
+"<span class='status-available'>Available</span>":
+"<span class='status-issued'>Issued</span>";
+
+row.insertCell(2).innerHTML=b.student?students.find(s=>s.id==b.student).name:"-";
+row.insertCell(3).innerHTML=b.due?b.due.toDateString():"-";
+
+if(!b.available){
+row.insertCell(4).innerHTML=`<button onclick="returnBook(${b.id})">Return</button>`;
+}else{
+row.insertCell(4).innerHTML="-";
+}
+});
+}
+
+function issueBook(){
+let bookId=document.getElementById("bookSelect").value;
+let studentId=document.getElementById("studentSelect").value;
+let returnDate=new Date(document.getElementById("returnDate").value);
+
+let book=books.find(b=>b.id==bookId);
+
+book.available=false;
+book.student=studentId;
+book.due=returnDate;
+
+updateDropdown();
+renderTable();
+}
+
+function returnBook(id){
+let book=books.find(b=>b.id==id);
+
+let today=new Date();
+today.setHours(0,0,0,0);
+
+let due=new Date(book.due);
+due.setHours(0,0,0,0);
+
+let diff=today-due;
+let lateDays=Math.floor(diff/(1000*60*60*24));
+if(lateDays<0) lateDays=0;
+
+let fine=lateDays*10;
+
+alert("Late Days: "+lateDays+"\nFine: ₹"+fine);
+
+book.available=true;
+book.student=null;
+book.due=null;
+
+updateDropdown();
+renderTable();
+}
+
+</script>
+
+</body>
+</html>

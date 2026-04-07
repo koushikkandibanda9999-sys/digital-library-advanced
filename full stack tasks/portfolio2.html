@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koushik Kandibanda | Full Stack Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================= LOGIN PAGE ================= */
+
+#loginPage{
+    height:100vh;
+    display:flex;
+}
+
+.login-left{
+    flex:1;
+    background:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1050&q=80') center/cover;
+}
+
+.login-right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#111;
+}
+
+.login-box{
+    width:320px;
+    text-align:center;
+}
+
+.login-box h2{
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin:15px 0;
+    border:none;
+    border-radius:8px;
+}
+
+.login-box button{
+    padding:12px 30px;
+    border:none;
+    border-radius:25px;
+    background:#00f2fe;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-box button:hover{
+    transform:scale(1.05);
+}
+
+/* ================= INTRO SCREEN ================= */
+
+#introScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+}
+
+#introScreen h1{
+    font-size:50px;
+    background:linear-gradient(90deg,#00f2fe,#4facfe);
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:fadeIn 2s ease-in-out;
+}
+
+#introScreen p{
+    margin-top:20px;
+    font-size:20px;
+    opacity:0.8;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* ================= PORTFOLIO ================= */
+
+#portfolio{
+    display:none;
+}
+
+nav{
+    position:fixed;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:500;
+}
+
+section{
+    padding:100px 8%;
+}
+
+#home{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+#home h1{
+    font-size:55px;
+    background:linear-gradient(90deg,#00f2fe,#4facfe);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+#typing{
+    margin-top:20px;
+    font-size:22px;
+}
+
+.btn{
+    padding:12px 30px;
+    background:#00f2fe;
+    border:none;
+    border-radius:30px;
+    margin-top:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+}
+
+/* ABOUT + SERVICES CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:30px;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    background:#00f2fe;
+    color:black;
+}
+
+/* CONTACT */
+
+form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+}
+
+input, textarea{
+    margin-bottom:20px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:black;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+    <div class="login-left"></div>
+    <div class="login-right">
+        <div class="login-box">
+            <h2>Developer Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+</div>
+
+<!-- INTRO -->
+<div id="introScreen">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Loading Experience...</p>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio">
+
+<nav>
+    <h2>Koushik</h2>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section id="home">
+    <h1>Koushik Kandibanda</h1>
+    <div id="typing"></div>
+    <button class="btn">Download Resume</button>
+</section>
+
+<section id="about">
+    <h2 style="text-align:center;margin-bottom:40px;">About Me</h2>
+    <div class="grid">
+        <div class="card">
+            🎓 B.Tech CSE (DS)<br><br>
+            Passionate about building scalable web applications.
+        </div>
+        <div class="card">
+            💼 Full Stack Intern<br><br>
+            Experience in MERN, SQL & deployment.
+        </div>
+        <div class="card">
+            🧠 Strong in DSA & Java<br><br>
+            Problem-solving focused mindset.
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <h2 style="text-align:center;margin-bottom:40px;">My Services</h2>
+    <div class="grid">
+        <div class="card">🌐 Full Stack Web Applications</div>
+        <div class="card">⚡ Modern UI/UX Interfaces</div>
+        <div class="card">📊 Backend & Database Design</div>
+        <div class="card">🚀 Deployment & Optimization</div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 style="text-align:center;margin-bottom:40px;">Contact Me</h2>
+    <form onsubmit="return sendMsg()">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button class="btn">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Koushik Kandibanda | Full Stack Developer
+</footer>
+
+</div>
+
+<script>
+function login(){
+    let user=document.getElementById("username").value;
+    let pass=document.getElementById("password").value;
+
+    if(user==="koushik" && pass==="1234"){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("introScreen").style.display="flex";
+
+        setTimeout(function(){
+            document.getElementById("introScreen").style.display="none";
+            document.getElementById("portfolio").style.display="block";
+        },3000);
+    }else{
+        alert("Invalid Login!");
+    }
+}
+
+const roles=["Full Stack Developer","MERN Developer","Java & DSA Enthusiast"];
+let i=0,j=0,current="",isDeleting=false;
+
+function type(){
+    current=roles[i];
+    if(!isDeleting){
+        document.getElementById("typing").innerHTML=current.substring(0,j++);
+        if(j>current.length){isDeleting=true;setTimeout(type,1000);return;}
+    }else{
+        document.getElementById("typing").innerHTML=current.substring(0,j--);
+        if(j<0){isDeleting=false;i=(i+1)%roles.length;}
+    }
+    setTimeout(type,100);
+}
+type();
+
+function sendMsg(){
+    alert("Message sent successfully!");
+    return false;
+}
+</script>
+
+</body>
+</html>

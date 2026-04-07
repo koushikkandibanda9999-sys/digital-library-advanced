@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Shop</title>
+  <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+
+<h1>🛒 Mini E-Commerce</h1>
+
+<div class="products">
+  <div class="card">
+    <h3>Headphones</h3>
+    <p>₹500</p>
+    <button onclick="addCart('Headphones',500)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <h3>Keyboard</h3>
+    <p>₹800</p>
+    <button onclick="addCart('Keyboard',800)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <h3>Mouse</h3>
+    <p>₹300</p>
+    <button onclick="addCart('Mouse',300)">Add to Cart</button>
+  </div>
+</div>
+
+<h2>🧾 Cart</h2>
+<ul id="cartList"></ul>
+<p id="total">Total: ₹0</p>
+
+<script src="script.js"></script>
+</body>
+</html>
