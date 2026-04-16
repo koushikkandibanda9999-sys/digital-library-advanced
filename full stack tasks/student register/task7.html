@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task7 - Smart Feedback System</title>
+<link rel="stylesheet" href="task7.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>✨ Smart Feedback System</h1>
+        <p>Interactive Form with Events & Functions</p>
+    </header>
+
+    <section class="form-section">
+
+        <h2>Customer Feedback</h2>
+
+        <form id="feedbackForm">
+
+            <div class="input-group">
+                <label>Name</label>
+                <input type="text" id="name"
+                    placeholder="Enter your name"
+                    onkeypress="validateInput(event)"
+                    onmouseover="highlightField(this)"
+                    onmouseout="removeHighlight(this)">
+                <small id="nameError"></small>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email"
+                    placeholder="Enter your email"
+                    onblur="validateEmail()"
+                    onmouseover="highlightField(this)"
+                    onmouseout="removeHighlight(this)">
+                <small id="emailError"></small>
+            </div>
+
+            <div class="input-group">
+                <label>Feedback</label>
+                <textarea id="feedback"
+                    placeholder="Write your feedback..."
+                    onkeyup="livePreview()"
+                    onmouseover="highlightField(this)"
+                    onmouseout="removeHighlight(this)"></textarea>
+            </div>
+
+            <div class="rating">
+                <label>Rating</label>
+                <select id="rating">
+                    <option>⭐</option>
+                    <option>⭐⭐</option>
+                    <option>⭐⭐⭐</option>
+                    <option>⭐⭐⭐⭐</option>
+                    <option>⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
+
+            <button type="button" ondblclick="submitForm()">
+                Submit (Double Click)
+            </button>
+
+        </form>
+    </section>
+
+    <section class="preview-section">
+        <h2>Live Preview</h2>
+        <div id="previewBox">Your feedback will appear here...</div>
+    </section>
+
+</div>
+
+<script src="task7.js"></script>
+</body>
+</html>

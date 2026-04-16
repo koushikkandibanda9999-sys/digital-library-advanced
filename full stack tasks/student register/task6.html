@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 6 - Automated Logging</title>
+    <link rel="stylesheet" href="task6.css">
+</head>
+<body>
+
+<header>
+    <h1>Automated Logging System</h1>
+    <p>Using Triggers & Views</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#triggers">Triggers</a></li>
+        <li><a href="#view">View</a></li>
+    </ul>
+</nav>
+
+<section id="about" class="card">
+    <h2>About</h2>
+    <p>
+        Automated logging records database actions like INSERT and UPDATE automatically.
+        It is used for tracking, auditing, and maintaining history.
+    </p>
+</section>
+
+<section id="tables" class="card">
+    <h2>Database Tables</h2>
+
+    <h3>Main Table</h3>
+    <pre>
+CREATE TABLE employees (
+ emp_id INT PRIMARY KEY,
+ name VARCHAR(50),
+ salary INT
+);
+    </pre>
+
+    <h3>Log Table</h3>
+    <pre>
+CREATE TABLE employee_log (
+ log_id INT AUTO_INCREMENT PRIMARY KEY,
+ emp_id INT,
+ action_type VARCHAR(10),
+ action_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+    </pre>
+</section>
+
+<section id="triggers" class="card">
+    <h2>Triggers</h2>
+
+    <button onclick="showCode('insert')">INSERT Trigger</button>
+    <button onclick="showCode('update')">UPDATE Trigger</button>
+
+    <pre id="codeDisplay"></pre>
+</section>
+
+<section id="view" class="card">
+    <h2>Daily Activity View</h2>
+    <pre>
+CREATE VIEW daily_activity AS
+SELECT DATE(action_time) AS activity_date,
+       action_type,
+       COUNT(*) AS total_actions
+FROM employee_log
+GROUP BY DATE(action_time), action_type;
+    </pre>
+
+    <button onclick="showReport()">Show Example Report</button>
+
+    <table id="reportTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Action</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</section>
+
+<footer>
+    <p>© 2026 Automated Logging System</p>
+</footer>
+
+<script src="task6.js"></script>
+</body>
+</html>
